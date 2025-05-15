@@ -1,30 +1,22 @@
-<script setup>
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+    <div class="bg-[#275B1A] px-[100px] py-[70px]">
+        <div class="bg-white rounded-[20px] " v-auto-animate>
+            <Header :isOpenCart="isOpenCart" :toggleCart="toggleCart"  /> 
+            
+            <router-view :isOpenCart="isOpenCart" :toggleCart="toggleCart" > 
+                
+            </router-view>
+        </div>
+    </div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+<script setup>
+import Header from './components/Header.vue'
+
+import { ref } from 'vue'
+const isOpenCart = ref(false)
+
+function toggleCart() {
+    isOpenCart.value = !isOpenCart.value
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+</script>

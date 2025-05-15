@@ -1,79 +1,138 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import "tailwindcss";
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body{
+    width: 100%;
 }
-
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.icon{
+    cursor: pointer;
+    transition: all .4s ease;
+    svg{
+        path{
+            transition: all .4s ease;
+            stroke: #9B9B9B;
+            color: transparent;
+        }
+    }
+    &:hover{
+        svg{
+            path{
+                transition: all .4s ease;
+                stroke: #1cdf1c;
+            }
+        }
+    }
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.icon1{
+    cursor: pointer;
+    transition: all .4s ease;
+    svg{
+        path{
+            transition: all .4s ease;
+            color: #9B9B9B;
+        }
+    }
+    &:hover{
+        svg{
+            path{
+                transition: all .4s ease;
+                color: #1cdf1c;
+            }
+        }
+    }
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+.swiper-button-next,
+.swiper-button-prev{
+    min-width: 44px;
+    min-height: 35px;
+    background-color: #fff;
+    border-radius: 100px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &::after{
+        --swiper-navigation-size: 22px;
+        --swiper-theme-color: #C8C8C8;
+        font-weight: bold;
+        
+    }
 }
 
-.card {
-  padding: 2em;
+.swiper-button-next{
+    &::after{
+        position: absolute;
+        left: 18px;
+    }
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.swiper-button-prev{
+    &::after{
+        position: absolute;
+        left: 14px;
+    }
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.like{
+    svg{
+        path{
+            transition: all 0.5s ease;
+            stroke: #EAEAEA;
+            fill: transparent;
+        }
+    }
+    &:hover{
+        svg{
+            path{
+                transition: all 0.5s ease;
+                stroke: #ff0000;
+                fill: transparent;
+            }
+        }
+    }
+    &.activeLike{
+        background-color: #FEF0F0;
+        svg{
+            path{
+                transition: all 0.5s ease;
+                stroke: #ff0000;
+                fill: #ff0000 ! important;
+            }
+        }
+    }
+}
+
+.hvTovar{
+    transition: all .4s ease;
+    &:hover{
+        transform: translateY(-10px);
+        cursor: pointer;
+        transition: all .4s ease;
+        box-shadow: 0px 14px 30px #0000001e;
+    }
+}
+
+.active{
+    position: fixed;
+    opacity: 1 !important;
+    visibility: visible !important;
+    right: 0px !important;
+    top: 0px !important;
+    transform: translateX(-385px) !important;
+    transition: all .4s ease !important;
+    z-index: 1;
+
+}
+
+.hide {
+    position: fixed;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    right: 0px !important;
+    top: 0px !important;
+    transform: translateX(0px) !important;
+    transition: all .4s ease !important;
+    z-index: 3;
 }
