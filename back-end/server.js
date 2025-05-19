@@ -17,7 +17,7 @@ sequelize
     .authenticate()
     .then(() => {
         console.log('Подключение к базе данных установлено успешно.');
-        return sequelize.sync(); // Синхронизация моделей после успешной аутентификации
+        // return sequelize.sync(); // Синхронизация моделей после успешной аутентификации
     })
     .then(() => {
         app.listen(PORT, () => {
