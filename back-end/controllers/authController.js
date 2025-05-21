@@ -1,7 +1,7 @@
 const User = require('../models/user');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const {Sequelize} = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 const register = async (req, res) => {
     try {
@@ -62,6 +62,14 @@ const login = async (req, res) => {
             expiresIn: process.env.JWT_LIFETIME,
         });
 
+        // Установка JWT в HTTP-only куки
+        res.cookie('token', token, {
+            httpOnly: true, // JavaScript НЕ сможет получить доступ к этой куке
+            secure: process.env.NODE_ENV === 'production', // Только HTTPS в production
+            sameSite: 'Lax', // Защита от CSRF (рекомендуется)
+            maxAge: 3600000, // 1 час (в миллисекундах), должно совпадать с JWT_LIFETIME
+        });
+
         res.status(200).json({ token, userId: user.id, username: user.username });
     } catch (error) {
         console.error('Ошибка входа:', error);
@@ -69,4 +77,20 @@ const login = async (req, res) => {
     }
 };
 
-module.exports = { register, login };
+
+// Добавим функцию выхода из системы
+const logout = async (req, res) => {
+    try {
+        res.clearCookie('token', {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Lax',
+        });
+        res.status(200).json({ message: 'Выход выполнен успешно' });
+    } catch (error) {
+        console.error('Ошибка выхода:', error);
+        res.status(500).json({ message: 'Ошибка сервера при выходе' });
+    }
+};
+
+module.exports = { register, login, logout };

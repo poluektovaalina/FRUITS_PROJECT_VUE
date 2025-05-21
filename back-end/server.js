@@ -3,14 +3,24 @@ const cors = require('cors');
 const sequelize = require('./config/db');
 const authRoutes = require('./routes/authRoutes');
 const fruitRoutes = require('./routes/fruitRoutes');
+const cookieParser = require('cookie-parser'); // Добавьте это COOKIE
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // Укажите домен вашего Vue-приложения (например, Vite обычно на 5173)
+  credentials: true, // Это ОЧЕНЬ ВАЖНО для отправки и получения куки
+}));
 app.use(express.json());
+app.use(cookieParser()); // Добавьте это
+
+
+app.listen(4000, () => {
+  console.log('Сервер запущен на http://localhost:4000');
+});
 
 // Подключение к базе данных и запуск сервера
 sequelize
@@ -29,7 +39,7 @@ sequelize
     });
 
 // Использование роутов
-app.use('/auth', authRoutes);
+app.use('/api/auth', authRoutes);                       
 app.use('/api', fruitRoutes);
 
 app.get('/', (req, res) => {

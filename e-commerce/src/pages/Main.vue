@@ -30,7 +30,20 @@ async function getAllProducts() {
         return response.data
     } catch (error) {
         console.log(error)
+        return[]
     }
+}
+
+async function auth() {
+    try{
+        const response = await axios.post("http://localhost:4000/auth/login",{
+            identifier: "alina",
+            password: "alina",
+        })
+    }catch(error){
+
+    }
+    
 }
 
 // прогрузка сначала дом элементов потом базы данных
@@ -49,6 +62,7 @@ async function searchProducts(event) {
 }
 
 onMounted(async () => {
+    await auth()
     fruits.value = await getAllProducts()
     compareFruits.value = fruits.value
     console.log(fruits.value)
