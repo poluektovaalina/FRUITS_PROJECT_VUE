@@ -28,6 +28,20 @@ const register = async (req, res) => {
             password: hashedPassword,
         });
 
+         // Создание JWT токена (аналогично функции login)
+        const token = jwt.sign({ userId: newUser.id }, process.env.JWT_SECRET, {
+            expiresIn: process.env.JWT_LIFETIME,
+        });
+
+        // Установка JWT в HTTP-only куки (аналогично функции login)
+        res.cookie('token', token, {
+            httpOnly: true,
+            secure: process.env.NODE_ENV === 'production',
+            sameSite: 'Lax',
+            maxAge: 3600000, // 1 час (в миллисекундах), должно совпадать с JWT_LIFETIME
+            path: '/',
+        });
+
         res.status(201).json({ message: 'Пользователь успешно зарегистрирован' });
     } catch (error) {
         console.error('Ошибка регистрации:', error);

@@ -32,4 +32,5 @@ const router = createRouter({
     routes, // Сокращенная запись для `routes: routes`
 });
 
+
 export default router;

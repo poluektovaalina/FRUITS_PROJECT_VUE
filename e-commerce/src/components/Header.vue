@@ -45,7 +45,7 @@
                             </defs>
                         </svg>
                     </div>
-                    <span class="text-[#5C5C5C] text-[14px] ">Избарнное</span>
+                    <span class="text-[#5C5C5C] text-[14px] ">Избранное</span>
                 </div>
             </router-link>
 
@@ -82,7 +82,8 @@
 defineProps({
     toggleCart: Function,
     username: String,
-    activeUser: String
+    activeUser: String,
+    authStatus: Boolean
 })
 // function ActiveCart (){
 //     const Icon = document.querySelector('.cart')
