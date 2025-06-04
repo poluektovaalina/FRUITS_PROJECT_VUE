@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
     <div class="basis-[22.7%] ">
         <div class="border-[2px] border-[#F3F3F3] hvTovar rounded-[40px] relative py-[24px] px-[29px] flex items-center flex-col">
             <div class="cursor-pointer like p-[10px] absolute bg-white  rounded-[7px] border-[#F8F8F8] border-[1px] top-[10px] left-[34px] ">
@@ -36,4 +36,4 @@ defineProps({
 })
 defineEmits(['removeItemCart'])
 
-</script> -->
+</script>

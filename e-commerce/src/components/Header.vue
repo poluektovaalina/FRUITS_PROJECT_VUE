@@ -49,12 +49,12 @@
                 </div>
             </router-link>
 
-            <div v-if="!activeUser" style="display: flex; gap: 10px;">
+            <div v-if="!authStatus" style="display: flex; gap: 10px;">
                 <router-link to="/Login">
                     <button>Войти</button>
                 </router-link>
-                <router-link to="/Auth">    
-                <button>Зарегистрироваться</button>
+                <router-link to="/Auth">
+                    <button>Зарегистрироваться</button>
                 </router-link>
             </div>
             <div v-else class="flex items-center gap-[8px]">
@@ -66,9 +66,9 @@
                     </svg>
                 </div>
                 <span class="text-[#5C5C5C] text-[14px] ">{{ activeUser }}</span>
-                 <router-link >
-                     <button>Выйти</button>
-                 </router-link>
+
+                <button @click="logout">Выйти</button>
+
             </div>
 
         </div>
@@ -77,19 +77,36 @@
 
 <script setup>
 
+import { useRouter } from "vue-router";
+import axios from 'axios'
+const router = useRouter()
 
 
-defineProps({
+
+const props = defineProps({
     toggleCart: Function,
     username: String,
     activeUser: String,
-    authStatus: Boolean
+    authStatus: Boolean,
+    changeStatus: Function
 })
 // function ActiveCart (){
 //     const Icon = document.querySelector('.cart')
 //     Icon.classList.add('active');
 
 // }
+
+async function logout() {
+    try {
+        const response = await axios.post("http://localhost:4000/api/auth/logout")
+        props.changeStatus(false)
+        router.push('/auth')
+
+    } catch (error) {
+        console.log(error)
+    }
+
+}
 
 
 </script>

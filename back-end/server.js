@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-  origin: 'http://localhost:5173', // Укажите домен вашего Vue-приложения (например, Vite обычно на 5173)
+  origin: 'http://localhost:5174', // Укажите домен вашего Vue-приложения (например, Vite обычно на 5173)
   credentials: true, // Это ОЧЕНЬ ВАЖНО для отправки и получения куки
 }));
 app.use(express.json());

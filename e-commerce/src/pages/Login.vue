@@ -38,7 +38,8 @@ const password = ref('');
 const router = useRouter(); // ✅ инициализация
 
 const props = defineProps({
-  activeUserFunction: Function
+  activeUserFunction: Function,
+  changeStatus: Function
 })
 
 async function loginUser() {
@@ -62,7 +63,7 @@ async function loginUser() {
   if (response.ok) {
     localStorage.setItem('username', username.value);
     props.activeUserFunction(username.value)
-
+    props.changeStatus(true)
     console.log('Пользователь вошёл');
     router.push('/'); // ✅ переход на главную
   } else {

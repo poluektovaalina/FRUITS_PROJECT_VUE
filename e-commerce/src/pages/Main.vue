@@ -3,8 +3,8 @@
         <Slider />
         <Search :searchProducts="searchProducts"/>
         <AllProducts :fruits="fruits" />
-        <!-- <Basket v-if="toggleCart" :toggleCart="toggleCart" :isOpenCart="isOpenCart" :cartItems="cartItems"
-            :removeItemCart="removeItemCart" /> -->
+        <Basket v-if="toggleCart" :toggleCart="toggleCart" :isOpenCart="isOpenCart" :cartItems="cartItems"
+            :removeItemCart="removeItemCart" />
     </div>
 </template>
 
@@ -33,7 +33,7 @@ async function getAllProducts() {
         return response.data
     } catch (error) {
         console.log(error.response.status)
-        props.changeStatus
+        props.changeStatus(false)
         return[]
     }
 }
